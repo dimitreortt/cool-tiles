@@ -2,7 +2,11 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const tilesSlice = createSlice({
   name: "tiles",
-  initialState: [{ id: "love", from: "#FE6B8B", to: "#FF8E53" }],
+  initialState: [
+    { id: "love", from: "#FE6B8B", to: "#FF8E53" },
+    { id: "2x_QpzME", from: "#C650C6", to: "#141DC8" },
+    { id: "2x_QpzMF", from: "#2FD334", to: "#EDE107" },
+  ],
   reducers: {
     updateTile(state, action) {
       const { id, updates } = action.payload

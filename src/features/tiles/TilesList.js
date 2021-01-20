@@ -1,6 +1,5 @@
 import React from "react"
 import { Tile } from "./Tile"
-import { connect } from "react-redux"
 
 export const TilesList = ({ tiles }) => {
   return (
@@ -11,11 +10,3 @@ export const TilesList = ({ tiles }) => {
     </div>
   )
 }
-
-// const selectTiles = (state) => state.tiles
-
-// const mapStateToProps = (state) => ({
-//   tiles: selectTiles(state),
-// })
-
-// export default connect(mapStateToProps)(TilesList)

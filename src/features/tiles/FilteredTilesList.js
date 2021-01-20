@@ -3,21 +3,12 @@ import { TilesList } from "./TilesList"
 import tinycolor from "tinycolor2"
 import { connect } from "react-redux"
 
-export const FilteredTilesList = () => {
-  return <div></div>
-}
-
 const selectTiles = (state) => state.tiles
 const selectFilter = (state) => {
-  console.log(state)
   return state.filter
 }
 
 const lightenTiles = (tiles, ratio) => {
-  if (!ratio) {
-    ratio = 10
-  }
-  console.log("greeting")
   return tiles.map((tile) => {
     return {
       from: tinycolor(tile.from).lighten(ratio).toString(),
@@ -27,17 +18,28 @@ const lightenTiles = (tiles, ratio) => {
   })
 }
 
+const darkenTiles = (tiles, ratio) => {
+  return tiles.map((tile) => {
+    return {
+      from: tinycolor(tile.from).darken(ratio).toString(),
+      to: tinycolor(tile.to).darken(ratio).toString(),
+      id: tile.id,
+    }
+  })
+}
+
 const filterTiles = (tiles, filter) => {
   switch (filter.currentFilter) {
     case "LIGHTEN":
       return lightenTiles(tiles, filter.ratio)
+    case "DARKEN":
+      return darkenTiles(tiles, filter.ratio)
     default:
       return tiles
   }
 }
 
 const selectFilteredTiles = (state) => {
-  console.log("oi")
   const tiles = selectTiles(state)
   const filter = selectFilter(state)
 
@@ -48,7 +50,6 @@ const selectFilteredTiles = (state) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log("oioi")
   return {
     tiles: selectFilteredTiles(state),
   }
